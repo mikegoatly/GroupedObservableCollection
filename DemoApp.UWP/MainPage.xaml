@@ -1,0 +1,50 @@
+﻿<Page
+    x:Class="DemoApp.UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DemoApp.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.Resources>
+            <CollectionViewSource IsSourceGrouped="True"
+                                  x:Name="Source" />
+        </Grid.Resources>
+
+        <ListView ItemsSource="{Binding Source={StaticResource Source}}"
+                  Height="400"
+                  VerticalAlignment="Top">
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Key}" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="{Binding}"
+                                Click="RemoveItemClick" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Bottom">
+            <TextBox Text=""
+                     x:Name="TextBox" />
+            <Button x:Name="Button"
+                    Content="Add"
+                    Click="Button_OnClick"/>
+            <Button x:Name="ResetButton"
+                    VerticalAlignment="Bottom"
+                    Content="Reset"
+                    Click="Reset_OnClick" />
+        </StackPanel>
+    </Grid>
+</Page>
