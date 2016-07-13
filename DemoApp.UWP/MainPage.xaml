@@ -13,9 +13,12 @@
                                   x:Name="Source" />
         </Grid.Resources>
 
-        <ListView ItemsSource="{Binding Source={StaticResource Source}}"
-                  Height="400"
-                  VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding Source={StaticResource Source}}">
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
@@ -35,13 +38,15 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Orientation="Horizontal"
-                    VerticalAlignment="Bottom">
+                    Grid.Row="1">
             <TextBox Text=""
+                     MinWidth="150"
                      x:Name="TextBox" />
             <Button x:Name="Button"
                     Content="Add"
                     Click="Button_OnClick"/>
             <Button x:Name="ResetButton"
+                    Margin="5,0,0,0"
                     VerticalAlignment="Bottom"
                     Content="Reset"
                     Click="Reset_OnClick" />
